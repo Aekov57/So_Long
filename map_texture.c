@@ -1,46 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   map_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: misimon <misimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 09:49:16 by misimon           #+#    #+#             */
-/*   Updated: 2022/06/29 13:22:00 by misimon          ###   ########.fr       */
+/*   Created: 2022/06/29 13:13:52 by misimon           #+#    #+#             */
+/*   Updated: 2022/06/29 13:14:23 by misimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-
-# include "libft/libft.h"
-# include <mlx.h>
-
-enum nombre
-{
-	ON_KEYDOWN = 2,
-	ON_KEYUP,
-	ON_MOUSEDOWN,
-	ON_MOUSEUP,
-	ON_MOUSEMOVE,
-	ON_EXPOSE = 12,
-	ON_DESTROY = 17,
-	SIZE_X = 1280,
-	SIZE_Y = 720
-};
-
-typedef struct s_var
-{
-	void *mlx;
-	void *win;
-	char **map;
-	int map_fd;
-	int mapsize_x;
-	int mapsize_y;
-	int map_error;
-
-} t_var;
-
-t_var read_map(char *file);
-
-#endif
+#include "so_long.h"

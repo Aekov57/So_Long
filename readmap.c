@@ -6,7 +6,7 @@
 /*   By: misimon <misimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 17:20:04 by misimon           #+#    #+#             */
-/*   Updated: 2022/06/28 20:27:15 by misimon          ###   ########.fr       */
+/*   Updated: 2022/06/29 14:46:25 by misimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ t_var read_map(char *file)
 	map_var.map_fd = open(file, O_RDONLY);
 	while ((map_var.map[map_count] = get_next_line(map_var.map_fd)))
 		ft_printf("%s", map_var.map[map_count++]);
-	map_var.map_x = ft_strlen(map_var.map[0]);
-	map_var.map_y = map_count;
+	map_var.mapsize_x = ft_strlen(map_var.map[0]) - 1;
+	map_var.mapsize_y = map_count;
 	close(map_var.map_fd);
 	return(map_var);
 }
