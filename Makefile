@@ -6,7 +6,7 @@
 #    By: misimon <misimon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/28 15:43:40 by misimon           #+#    #+#              #
-#    Updated: 2022/09/21 16:41:03 by misimon          ###   ########.fr        #
+#    Updated: 2022/09/28 19:10:42 by misimon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ SL_SRC = main\
 		other_fct\
 		check_map\
 		texture_fct\
+		move_fct\
+		check_access\
 
 ALL_SRC +=	$(addsuffix .c, $(SL_SRC))
 
