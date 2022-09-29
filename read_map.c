@@ -6,7 +6,7 @@
 /*   By: misimon <misimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 20:58:29 by misimon           #+#    #+#             */
-/*   Updated: 2022/09/28 18:02:43 by misimon          ###   ########.fr       */
+/*   Updated: 2022/10/03 14:52:08 by misimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,17 @@ t_map	init_map(t_map map, t_var *mlx, char *av)
 	map.column = get_next_line(map.file);
 	if (!map.column)
 		exit(error_esc("Map file is empty !", mlx));
-	map.save = "\0";
+	map.save = ft_calloc(1, sizeof(char));
 	while (map.column)
 	{
 		if (map.column[0] == '\n')
 			exit(error_esc("Empty line detected !", mlx));
 		map.save = ft_strjoin(map.save, map.column);
+		free(map.column);
 		map.column = get_next_line(map.file);
 		map.size.y++;
 	}
+	free(map.column);
 	check_symbol(map, map.save, mlx);
 	map.data = ft_split(map.save, '\n');
 	map.size.x = check_size(map, mlx);

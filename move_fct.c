@@ -6,7 +6,7 @@
 /*   By: misimon <misimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:44:46 by misimon           #+#    #+#             */
-/*   Updated: 2022/09/26 23:01:01 by misimon          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:42:19 by misimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +116,8 @@ void	print_move(int step, t_var *mlx)
 	while (mlx->map.data[++i])
 		ft_printf("%s\n", mlx->map.data[i]);
 	ft_printf("Step [%d]\nObject [%d]\n", step, mlx->object.n_collect);
+	mlx_image_to_window(mlx->data, mlx->wall.img, 64, 0);
+	mlx_image_to_window(mlx->data, mlx->wall.img, 128, 0);
+	mlx_put_string(mlx->data, "Step = ", 5, 5);
+	mlx_put_string(mlx->data, ft_itoa(step), 100, 5);
 }

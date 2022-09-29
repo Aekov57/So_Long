@@ -6,7 +6,7 @@
 /*   By: misimon <misimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:58:56 by misimon           #+#    #+#             */
-/*   Updated: 2022/09/28 17:15:21 by misimon          ###   ########.fr       */
+/*   Updated: 2022/10/03 13:25:29 by misimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ void		left(t_var *mlx, int *step);
 void		right(t_var *mlx, int *step);
 void		print_move(int step, t_var *mlx);
 void		check_access(t_var *mlx);
+int			free_map(char **map);
 
 #endif

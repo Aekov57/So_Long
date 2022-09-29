@@ -6,7 +6,7 @@
 /*   By: misimon <misimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 14:04:29 by misimon           #+#    #+#             */
-/*   Updated: 2022/04/27 17:30:36 by misimon          ###   ########.fr       */
+/*   Updated: 2022/10/03 14:56:31 by misimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (s2[++i])
 		str[i + ft_strlen(s1)] = s2[i];
 	str[i + ft_strlen(s1)] = '\0';
+	free((char *)s1);
 	return (str);
 }

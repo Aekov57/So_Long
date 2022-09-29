@@ -6,7 +6,7 @@
 /*   By: misimon <misimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:58:33 by misimon           #+#    #+#             */
-/*   Updated: 2022/09/28 19:09:07 by misimon          ###   ########.fr       */
+/*   Updated: 2022/10/03 13:29:31 by misimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int	main(int ac, char **av)
 	mlx_key_hook(mlx->data, key_funct, (void *)mlx);
 	mlx_loop(mlx->data);
 	mlx_terminate(mlx->data);
+	free_map(mlx->map.data);
 	return (esc_success(mlx, "Game closed !"));
 }

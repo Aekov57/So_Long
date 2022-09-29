@@ -6,7 +6,7 @@
 #    By: misimon <misimon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/28 15:43:40 by misimon           #+#    #+#              #
-#    Updated: 2022/09/28 19:10:42 by misimon          ###   ########.fr        #
+#    Updated: 2022/09/29 17:42:54 by misimon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,8 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g3
 DANGER = -fsanitize=address
 LIBS =  mlx/libmlx42.a -I include -lglfw -L "/Users/misimon/.brew/opt/glfw/lib/"\
-		-Llibft -lft #ajouter la libft
+		-Llibft -lft
 
-# -Lmlx -lmlx -framework OpenGL -framework AppKit
-# -lmlx -framework OpenGL -framework AppKit
 # ============================================================================ #
 # ==============================|	FILES	|================================= #
 # ============================================================================ #
@@ -49,7 +47,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	@make -sC libft
 	@make -sC mlx
-	$(CC) -o $(NAME) $(OBJS) $(LIBS) $(DANGER)
+	$(CC) -o $(NAME) $(OBJS) $(LIBS)
 norm :
 	@make norm -sC libft
 	@norminette

@@ -6,7 +6,7 @@
 /*   By: misimon <misimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 15:18:43 by misimon           #+#    #+#             */
-/*   Updated: 2022/09/28 20:21:49 by misimon          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:54:21 by misimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,75 @@ t_size	get_cord(char **map, t_size object_cord)
 			}
 			i[1]++;
 		}
-		ft_printf("%s\n", map[i[0]]);
 		i[0]++;
 	}
 	return (object_cord);
 }
 
+char	**copy_map(char **map)
+{
+	char	**new;
+	int		i;
+	int		j;
+	int		l;
+
+	l = ft_strlen(map[0]) + 1;
+	i = 0;
+	while (map[i])
+		i++;
+	new = malloc(sizeof(char *) * (i + 1));
+	i = -1;
+	while (map[++i])
+	{
+		new[i] = malloc(sizeof(char) * l);
+		j = -1;
+		while (map[i][++j])
+			new[i][j] = map[i][j];
+		new[i][j] = '\0';
+	}
+	new[i] = 0;
+	return (new);
+}
+
+int	free_map(char **map)
+{
+	int	i;
+
+	i = -1;
+	while (map[++i])
+		free(map[i]);
+	free(map);
+	return (1);
+}
+
 int	player_access(int x, int y, char **map, t_size player)
 {
-	if (map[y][x - 1] != '1')
-		if (player_access(x - 1, y, map, player))
-			return (1);
-	if (map[y][x + 1] != '1')
-		if (player_access(x + 1, y, map, player))
-			return (1);
-	if (map[y - 1][x] != '1')
-		if (player_access(x, y - 1, map, player))
-			return (1);
-	if (map[y + 1][x] != '1')
-		if (player_access(x, y + 1, map, player))
-			return (1);
+	char	**copy;
+
+	copy = copy_map(map);
 	if (player.x == x && player.y == y)
-		return (1);
-	return (0);
+		return (free_map(copy));
+	copy[y][x] = '1';
+	if (map[y][x - 1] != '1')
+		if (player_access(x - 1, y, copy, player))
+			return (free_map(copy));
+	if (map[y - 1][x] != '1')
+		if (player_access(x, y - 1, copy, player))
+			return (free_map(copy));
+	if (map[y][x + 1] != '1')
+		if (player_access(x + 1, y, copy, player))
+			return (free_map(copy));
+	if (map[y + 1][x] != '1')
+		if (player_access(x, y + 1, copy, player))
+			return (free_map(copy));
+	return (free_map(copy) - 1);
 }
 
 void	check_access(t_var *mlx)
 {
 	t_size	object_cord;
 	t_size	player;
-	char 	**map;
+	char	**map;
 	int		max_cord;
 	int		i;
 
@@ -74,7 +113,6 @@ void	check_access(t_var *mlx)
 	while (max_cord--)
 	{
 		object_cord = get_cord(map, object_cord);
-		ft_printf("y = %d x = %d\n", object_cord.y, object_cord.x);
 		if (!player_access(object_cord.x, object_cord.y, map, player))
 		{
 			free(map);
@@ -82,56 +120,5 @@ void	check_access(t_var *mlx)
 		}
 	}
 	free(map);
+	free(mlx->map.save);
 }
-
-/*
-int player_x;
-	int player_y;
-	int i;
-	int map_i;
-
-	i = 0;
-	player_x = mlx->player.x;
-	player_y = mlx->player.y;
-	while (player_y != object_cord[i].y && player_x != object_cord[i].x)
-	{
-		map_i = -1;
-
-		while (map[++map_i])
-			ft_printf("\033[2K\033[1A\r");
-		map_i = 0;
-		while (map[map_i])
-			ft_printf("%s\n", map[map_i++]);
-		if (map[player_y - 1][player_x] == '0')
-		{
-			player_y--;
-			map[player_y][player_x] = 'M';
-		}
-		if (map[player_y - 1][player_x] == '1' && map[player_y][player_x + 1] != '1')
-		{
-			player_x--;
-			map[player_y][player_x] = 'M';
-		}
-		while (map[player_y][player_x - 1] != '1')
-		{
-			player_x--;
-			map[player_y][player_x] = 'M';
-		}
-		while (map[player_y][player_x + 1] != '1')
-		{
-			player_x++;
-			map[player_y][player_x] = 'M';
-		}
-
-		if (player_y == object_cord[i].y && player_x == object_cord[i].x)
-			i++;
-
-			}
-	if (x, y == P)
-		return 1
-	x, y = 1
-	if x + 1 | y == 1
-		rec ( x+1 y, map)
-	if x + -1 | y == 1
-	if x  | y +1 == 1
-	if x | y -1 == 1*/
