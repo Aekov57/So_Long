@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 		return (error_esc("Argument problem !", mlx));
 	mlx->map = init_map(mlx->map, mlx, av[1]);
 	mlx->data = mlx_init(mlx->map.size.x * 64, mlx->map.size.y * 64,
-			"so_long", 1);
+			"so_long", 0);
 	if (check_wall(mlx->map, mlx) != 1)
 		exit (error_esc("Map incorrect !", mlx));
 	check_access(mlx);
